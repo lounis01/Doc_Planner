@@ -1,0 +1,127 @@
+﻿@model IEnumerable<Doc_Planner.Models.Appointment>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Liste des rendez-vous</h1>
+
+<p>
+    <a asp-action="Create">Créer un nouveau rendez-vous</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.HDebutRdv)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prenom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sexe)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Birthday)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Diabete)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Poids)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Taille)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BMI)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExamenType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NISS)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telephone)
+            </th>
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model)
+{
+    @if (item.IsDeleted == false)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.HDebutRdv)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prenom)
+            </td>
+            <td>
+                @if (item.Sexe == true)
+                {
+                      <img src="~/men.png" />
+
+                }
+
+                else
+                {<img src="~/women.png"> }
+                
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Birthday)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Diabete)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Poids)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Taille)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BMI)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExamenType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NISS)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telephone)
+            </td>
+
+            <td>
+
+                <a asp-action="Edit" asp-route-id="@item.ID">Editer</a> 
+            </td>
+
+            <td>
+
+                <a asp-action="Details" asp-route-id="@item.ID">Détails</a> 
+            </td>
+
+            <td>
+
+                <a asp-action="Delete" asp-route-id="@item.ID">Supprimer</a>
+            </td>
+
+
+
+        </tr>
+    }
+}
+    </tbody>
+</table>
