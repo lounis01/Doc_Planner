@@ -9,6 +9,16 @@
 <p>
     <a asp-action="Create">Créer un nouveau rendez-vous</a>
 </p>
+
+<p>
+    @using (Html.BeginForm("Index", "Appointments", FormMethod.Get))
+    {
+        <b>Rechercher par</b> @Html.RadioButton("searchBy", "Nom", true) <text> Nom </text>
+        @Html.RadioButton("searchBy", "Birthday") <text> Date de naissance </text>
+        <br />
+        @Html.TextBox("search")<input type="submit" value="Search">
+    }
+</p>
 <table class="table">
     <thead>
         <tr>
@@ -48,80 +58,80 @@
             <th>
                 @Html.DisplayNameFor(model => model.Telephone)
             </th>
-           
+
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model)
-{
-    @if (item.IsDeleted == false)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.HDebutRdv)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nom)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Prenom)
-            </td>
-            <td>
-                @if (item.Sexe == true)
-                {
-                      <img src="~/men.png" />
+        @foreach (var item in Model)
+        {
+            @if (item.IsDeleted == false)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HDebutRdv)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nom)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Prenom)
+                    </td>
+                    <td>
+                        @if (item.Sexe == true)
+                        {
+                            <img src="~/men.png" />
 
-                }
+                        }
 
-                else
-                {<img src="~/women.png"> }
-                
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Birthday)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Diabete)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Poids)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Taille)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BMI)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ExamenType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NISS)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telephone)
-            </td>
+                        else
+                        {<img src="~/women.png">}
 
-            <td>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Birthday)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Diabete)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Poids)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Taille)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BMI)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ExamenType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NISS)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Telephone)
+                    </td>
 
-                <a asp-action="Edit" asp-route-id="@item.ID">Editer</a> 
-            </td>
+                    <td>
 
-            <td>
+                        <a asp-action="Edit" asp-route-id="@item.ID">Editer</a>
+                    </td>
 
-                <a asp-action="Details" asp-route-id="@item.ID">Détails</a> 
-            </td>
+                    <td>
 
-            <td>
+                        <a asp-action="Details" asp-route-id="@item.ID">Détails</a>
+                    </td>
 
-                <a asp-action="Delete" asp-route-id="@item.ID">Supprimer</a>
-            </td>
+                    <td>
+
+                        <a asp-action="Delete" asp-route-id="@item.ID">Supprimer</a>
+                    </td>
 
 
 
-        </tr>
-    }
-}
+                </tr>
+            }
+        }
     </tbody>
 </table>

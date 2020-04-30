@@ -6,22 +6,42 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Doc_Planner.Models;
+using Doc_Planner.DAL;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Doc_Planner.Controllers
 {
     public class AppointmentsController : Controller
     {
-        private readonly AppointmentContext _context;
+        private readonly DocPlannerContext _context;
 
-        public AppointmentsController(AppointmentContext context)
+        public AppointmentsController(DocPlannerContext context)
         {
             _context = context;
         }
 
         // GET: Appointments
-        public async Task<IActionResult> Index()
+       //[Authorize]
+        public async Task<IActionResult> Index(string searchBy, string search)
         {
-            return View(await _context.appointments.ToListAsync());
+            if (searchBy == "Nom")
+            {
+                //return View(await _context.appointments.ToListAsync().);
+                return View(await _context.appointments
+                    .Where(x => x.Nom.Contains(search) || search == null)
+                    .ToListAsync());
+
+            }
+            else
+            {
+                return View(await _context.appointments
+                    .Where(x => x.Telephone==search || search ==null)
+                    .ToListAsync());
+                    
+
+            }
+
+
         }
 
         // GET: Appointments/Details/5

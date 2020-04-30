@@ -8,15 +8,15 @@ using Microsoft.Extensions.Logging;
 using Doc_Planner.Models;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Mvc;
-
+using Doc_Planner.DAL;
 
 namespace Doc_Planner.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly AppointmentContext _context;
+        private readonly DocPlannerContext _context;
 
-        public HomeController(AppointmentContext context)
+        public HomeController(DocPlannerContext context)
         {
             _context = context;
         }

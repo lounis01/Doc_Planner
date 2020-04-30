@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Doc_Planner.DAL;
 using Doc_Planner.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,8 +28,15 @@ namespace Doc_Planner
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddDbContext<AppointmentContext>(options =>
-             options.UseSqlServer(Configuration.GetConnectionString("DevConnection"))); ;
+            services.AddDbContext<DocPlannerContext>(options =>
+             options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
+
+
+            //services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            //{
+            //    options.User.RequireUniqueEmail = false;
+            //});
+            services.AddMvc();
 
         }
 
