@@ -32,8 +32,14 @@
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Sexe)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Sexe)
+        <dd class="col-sm-10">
+            @if(Html.ViewData.Model.Sexe==true)
+            {
+            <img src="~/men.png" />
+
+            }
+            else
+            {<img src="~/women.png">}
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Birthday)
@@ -83,12 +89,7 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Telephone)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsDeleted)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsDeleted)
-        </dd>
+        
     </dl>
     
     <form asp-action="Delete">

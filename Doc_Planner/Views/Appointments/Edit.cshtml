@@ -30,7 +30,10 @@
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Sexe" /> @Html.DisplayNameFor(model => model.Sexe)
+                    <label asp-for="Sexe" class="control-label"></label>
+                    <br />  
+                    @Html.RadioButtonFor(model => model.Sexe, "true") Masculin
+                    @Html.RadioButtonFor(model => model.Sexe, "false") Féminin
                 </label>
             </div>
             <div class="form-group">

@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Doc_Planner.Models;
 using Doc_Planner.DAL;
 using Microsoft.AspNetCore.Authorization;
+using ReflectionIT.Mvc.Paging;
 
 namespace Doc_Planner.Controllers
 {
@@ -22,27 +23,35 @@ namespace Doc_Planner.Controllers
 
         // GET: Appointments
        //[Authorize]
-        public async Task<IActionResult> Index(string searchBy, string search)
+        public async Task<IActionResult> Index(DateTime? dateDebut,DateTime? HDebut, DateTime? dateFin,DateTime? HFin, string nom,DateTime? birthday,bool annules, int page = 1)
         {
-            if (searchBy == "Nom")
+            var result = _context.appointments.AsQueryable().AsNoTracking().OrderBy(x=>x.Nom);
+
+            if (dateDebut.HasValue||dateFin.HasValue||nom!=null||birthday!= null||annules!=null)
             {
-                //return View(await _context.appointments.ToListAsync().);
-                return View(await _context.appointments
-                    .Where(x => x.Nom.Contains(search) || search == null)
-                    .ToListAsync());
+               
 
+                //Création d'une datedebut et d'une dateFin sur base du datepicker et du hourspicker
+                if (dateDebut.HasValue && HDebut.HasValue)
+                    dateDebut = new DateTime(dateDebut.Value.Year, dateDebut.Value.Month, dateDebut.Value.Day, HDebut.Value.Hour, HDebut.Value.Minute, HDebut.Value.Second);
+                if (dateFin.HasValue && HFin.HasValue)
+                    dateFin = new DateTime(dateFin.Value.Year, dateFin.Value.Month, dateFin.Value.Day, HFin.Value.Hour, HFin.Value.Minute, HFin.Value.Second);
+              
+                if (dateDebut != null)
+                    result = result.Where(x => x.HDebutRdv == dateDebut).OrderBy(x => x.Nom);
+                if (dateFin != null)
+                    result = result.Where(x => x.HFinRdv == dateFin).OrderBy(x => x.Nom);
+                if (nom != null)
+                    result = result.Where(x => x.Nom == nom).OrderBy(x => x.Nom);
+                if (birthday != null)
+                    result = result.Where(x => x.Birthday == birthday).OrderBy(x => x.Nom);
+                if (annules != null)
+                    result = result.Where(x => x.IsDeleted == annules).OrderBy(x => x.Nom);
             }
-            else
-            {
-                return View(await _context.appointments
-                    .Where(x => x.Telephone==search || search ==null)
-                    .ToListAsync());
-                    
 
-            }
-
-
-        }
+            var model = await PagingList.CreateAsync(result,5, page);
+            return View(model);
+    }
 
         // GET: Appointments/Details/5
         public async Task<IActionResult> Details(int? id)

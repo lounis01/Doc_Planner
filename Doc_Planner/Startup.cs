@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ReflectionIT.Mvc.Paging;
 
 namespace Doc_Planner
 {
@@ -37,6 +38,11 @@ namespace Doc_Planner
             //    options.User.RequireUniqueEmail = false;
             //});
             services.AddMvc();
+            services.AddPaging(options => {
+                options.ViewName = "Bootstrap4";
+                options.HtmlIndicatorDown = " <span>&darr;</span>";
+                options.HtmlIndicatorUp = " <span>&uarr;</span>";
+            });
 
         }
 

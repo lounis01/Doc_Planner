@@ -1,11 +1,13 @@
 ﻿@model IEnumerable<Doc_Planner.Models.Appointment>
+@using ReflectionIT.Mvc.Paging
+@addTagHelper *,Reflection.Mvc.Paging
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Liste des rendez-vous</h1>
 
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/Index.css">
 <p>
     <a asp-action="Create">Créer un nouveau rendez-vous</a>
 </p>
@@ -13,12 +15,34 @@
 <p>
     @using (Html.BeginForm("Index", "Appointments", FormMethod.Get))
     {
-        <b>Rechercher par</b> @Html.RadioButton("searchBy", "Nom", true) <text> Nom </text>
-        @Html.RadioButton("searchBy", "Birthday") <text> Date de naissance </text>
+
+        <b>Recherche de rendez-vous</b>
         <br />
-        @Html.TextBox("search")<input type="submit" value="Search">
+        <br />
+        <div class="form-group col-lg-3">
+            <text> Plage du rendez-vous </text>
+            <span class="form-check form-check-inline">
+                <input type="date" name="dateDebut" class="form-control form-control-sm" /> <input type="time" name="hDebut" class="form-control form-control-sm col-lg-2" />   <text> à </text>
+                <input type="date" name="dateFin" class="form-control form-control-sm" /> <input type="time" name="hDebut" class="form-control form-control-sm col-lg-2" />
+            </span>
+            <text> Nom</text>  <input type="text" placeholder="Nom du patient" name="nom" class="form-control form-control-sm" />
+            <text>Date de naissance</text> <input type="date" class="form-control form-control-sm" name="birthday" />
+            <br />
+            <text>Rendez-vous annulés</text>
+            <div class="checkbox checkbox-slider--b-flat checkbox-slider-sm">
+                <label>
+                    <input type="checkbox" name="annules">
+                </label>
+            </div>
+
+
+        </div>
+        <input type="submit" value="Rechercher" class="fc-button" />
+
+
     }
 </p>
+<h3>Liste des rendez-vous</h3>
 <table class="table">
     <thead>
         <tr>
@@ -135,3 +159,7 @@
         }
     </tbody>
 </table>
+<nav aria-label="Appointments Paging">
+    @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model, @class = "page-link" })
+
+</nav>

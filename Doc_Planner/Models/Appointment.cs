@@ -58,6 +58,13 @@ namespace Doc_Planner.Models
         [Column(TypeName = "datetime2")]
         [DisplayName("Heure fin du RDV")]
         public DateTime HFinRdv { get; set; }
+        [Column(TypeName = "nvarchar(250)")]
+        [DisplayName("Hôpital de référence")]
+        public string HopitalDeRef  { get; set; }
+
+        [DisplayName("Urgent")]
+        [Column(TypeName = "bit")]
+        public bool Emergency { get; set; }
 
     }
 }
