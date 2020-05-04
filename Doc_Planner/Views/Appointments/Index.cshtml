@@ -25,19 +25,20 @@
                 <input type="date" name="dateDebut" class="form-control form-control-sm" /> <input type="time" name="hDebut" class="form-control form-control-sm col-lg-2" />   <text> à </text>
                 <input type="date" name="dateFin" class="form-control form-control-sm" /> <input type="time" name="hDebut" class="form-control form-control-sm col-lg-2" />
             </span>
+
             <text> Nom</text>  <input type="text" placeholder="Nom du patient" name="nom" class="form-control form-control-sm" />
             <text>Date de naissance</text> <input type="date" class="form-control form-control-sm" name="birthday" />
-            <br />
-            <text>Rendez-vous annulés</text>
-            <div class="checkbox checkbox-slider--b-flat checkbox-slider-sm">
+
+            Rendez-vous annulés
+            <div class="checkbox checkbox-slider--b-flat checkbox-slider-md">
                 <label>
-                    <input type="checkbox" name="annules">
+                    <input type="checkbox" name="annules"><span></span>
                 </label>
             </div>
-
+            <input type="submit" value="Rechercher" class="btn btn-primary btn-block" />
 
         </div>
-        <input type="submit" value="Rechercher" class="fc-button" />
+        
 
 
     }

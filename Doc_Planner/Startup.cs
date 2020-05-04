@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Doc_Planner.DAL;
+using Doc_Planner.Identity;
 using Doc_Planner.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,14 +30,19 @@ namespace Doc_Planner
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddIdentity<AppUser, AppRole>(options =>
+            {
+                options.User.RequireUniqueEmail = true;
+
+            }).AddEntityFrameworkStores<DocPlannerContext>();
+
+
             services.AddDbContext<DocPlannerContext>(options =>
              options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
 
 
-            //services.AddIdentity<IdentityUser, IdentityRole>(options =>
-            //{
-            //    options.User.RequireUniqueEmail = false;
-            //});
+            
+
             services.AddMvc();
             services.AddPaging(options => {
                 options.ViewName = "Bootstrap4";
@@ -64,6 +70,10 @@ namespace Doc_Planner
 
             app.UseRouting();
 
+
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

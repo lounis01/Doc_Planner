@@ -5,6 +5,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200503180119_modifyIdentitySchema.cs" />
+    <Compile Remove="Migrations\20200503180119_modifyIdentitySchema.Designer.cs" />
+    <Compile Remove="Migrations\20200503180404_modifyIdentitySchema.cs" />
+    <Compile Remove="Migrations\20200503180404_modifyIdentitySchema.Designer.cs" />
+    <Compile Remove="Migrations\20200503181115_modifyIdentitySchema.cs" />
+    <Compile Remove="Migrations\20200503181115_modifyIdentitySchema.Designer.cs" />
+    <Compile Remove="Migrations\20200503181928_modifyIdentitySchema.cs" />
+    <Compile Remove="Migrations\20200503181928_modifyIdentitySchema.Designer.cs" />
+    <Compile Remove="Migrations\20200504135443_IdUser.cs" />
+    <Compile Remove="Migrations\20200504135443_IdUser.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\men.png" />
     <None Include="wwwroot\women.png" />
   </ItemGroup>
@@ -14,6 +27,10 @@
     <PackageReference Include="Fluent.Infrastructure" Version="2.0.0-beta-01" />
     <PackageReference Include="jQuery" Version="3.5.0.1" />
     <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.7" />
+    <PackageReference Include="Microsoft.AspNet.Providers.Core" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="3.1.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.3" />

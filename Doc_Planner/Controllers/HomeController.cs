@@ -9,6 +9,7 @@ using Doc_Planner.Models;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Mvc;
 using Doc_Planner.DAL;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Doc_Planner.Controllers
 {
@@ -21,11 +22,12 @@ namespace Doc_Planner.Controllers
             _context = context;
         }
 
+        [Authorize]
         public IActionResult Index()
         {
             return View();
         }
-
+        [Authorize]
         public JsonResult GetEvents()
         {
             List<Event> listeEvent = new List<Event>();

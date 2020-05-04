@@ -4,14 +4,16 @@ using Doc_Planner.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Doc_Planner.Migrations
 {
     [DbContext(typeof(DocPlannerContext))]
-    partial class AppointmentContextModelSnapshot : ModelSnapshot
+    [Migration("20200504141440_CreateUserIdentity")]
+    partial class CreateUserIdentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

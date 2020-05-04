@@ -6,9 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Doc_Planner.Models;
-using Doc_Planner.DAL;
 using Microsoft.AspNetCore.Authorization;
 using ReflectionIT.Mvc.Paging;
+using Doc_Planner.DAL;
 
 namespace Doc_Planner.Controllers
 {
@@ -22,7 +22,7 @@ namespace Doc_Planner.Controllers
         }
 
         // GET: Appointments
-       //[Authorize]
+       [Authorize]
         public async Task<IActionResult> Index(DateTime? dateDebut,DateTime? HDebut, DateTime? dateFin,DateTime? HFin, string nom,DateTime? birthday,bool annules, int page = 1)
         {
             var result = _context.appointments.AsQueryable().AsNoTracking().OrderBy(x=>x.Nom);
