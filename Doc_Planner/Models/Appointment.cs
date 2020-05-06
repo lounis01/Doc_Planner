@@ -17,6 +17,8 @@ namespace Doc_Planner.Models
         [Column(TypeName = "datetime2")]
         [DisplayName("Heure du RDV")]
         public DateTime HDebutRdv { get; set; }
+
+
         [Column(TypeName = "nvarchar(250)")]
         public string Nom { get; set; }
         [Column(TypeName = "nvarchar(250)")]
@@ -32,6 +34,7 @@ namespace Doc_Planner.Models
         public DateTime Birthday { get; set; }
 
         [Column(TypeName = "nvarchar(250)")]
+        [DisplayName("Diabète")]
         public string Diabete { get; set; } //==> ne laisser que les choix existants aux utilisateurs
 
         [Column(TypeName = "float")]
@@ -59,7 +62,7 @@ namespace Doc_Planner.Models
         [DisplayName("Heure fin du RDV")]
         public DateTime HFinRdv { get; set; }
         [Column(TypeName = "nvarchar(250)")]
-        [DisplayName("Hôpital de référence")]
+        [DisplayName("Hôpital")]
         public string HopitalDeRef  { get; set; }
 
         [DisplayName("Urgent")]

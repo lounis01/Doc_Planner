@@ -51,7 +51,19 @@
                                 <span asp-validation-for="Password" class="text-danger"></span>
                             </div>
                         </div>
-                        
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="HopitRef"></label>
+                                <select asp-for="HopitRef" class="form-control">
+                                    <option value="GHDC">Grand Hôpital de Charleroi</option>
+                                    <option value="CNDG">Clinique Notre-Dame de Grâce </option>
+                                    <option value="CHUCHARLEROI">CHU Charleroi</option>
+                                </select>
+                                <span asp-validation-for="HopitRef" class="text-danger"></span>
+                            </div>
+                        </div>
+
                     </div>
                     <input type="submit" value="Register" class="btn btn-sm btn-primary text-uppercase rounded-0" />
                 </form>

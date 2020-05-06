@@ -34,29 +34,27 @@ namespace Doc_Planner.Controllers
             foreach (var app in _context.appointments)
             {
                 Event ev = new Event();
-                //ev.Start = app.HDebutRdv;
-                //ev.EventID = app.ID;
-                //ev.ThemeColor = "Red";
-                //ev.Subject = app.ExamenType;
+               
                 ev.EventId = app.ID;
-                ev.Title = app.Nom;
-                ev.Description = "lol²";
-                //ev.Start = "2020-04-24 04:00:00";
-                ev.Start = app.HDebutRdv.ToString("yyyy-MM-dd hh:mm:ss");
-                ev.End = "LOOOOOOOOOOL";
+                ev.Title =  app.ExamenType + " | " + app.Nom+" " +app.Prenom;
+                ev.Description = app.ExamenType;
+                ev.Start = app.HDebutRdv;
+                ev.End = app.HFinRdv; 
                 ev.AllDay = false;
-                ev.Color = "green";
-
+                if (app.HopitalDeRef == "GHDC") { ev.Color = "lightgreen"; }
+                else if (app.HopitalDeRef == "CNDG"){ev.Color = "cyan";}
+                else { ev.Color = "pink"; }
 
 
                 listeEvent.Add(ev);
             }
 
             var events = listeEvent;
-            //return new System.Web.Mvc.JsonResult { Data = events, JsonRequestBehavior = System.Web.Mvc.JsonRequestBehavior.AllowGet };
             return Json(events);
 
         }
+
+
 
     }
     

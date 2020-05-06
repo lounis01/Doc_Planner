@@ -23,7 +23,7 @@ namespace Doc_Planner.Controllers
         }
 
         [HttpGet]
-        public IActionResult Login()
+        public async Task <IActionResult> Login()
         {
             return View();
         }
@@ -36,10 +36,7 @@ namespace Doc_Planner.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            else 
-            {
-                ViewBag.Result = "result is : " + result.ToString();
-            }
+           
             
             return View();
         }
@@ -64,13 +61,14 @@ namespace Doc_Planner.Controllers
             try
             {  
                AppUser user = await UserMgr.FindByEmailAsync(appUser.Email);
-                    if (user == null)
-                    {
+                if (user == null)
+                {
                         user = new AppUser();
                         user.Email = appUser.Email;
                         user.Nom = appUser.Nom;
                         user.Prenom = appUser.Prenom;
                         user.UserName = appUser.UserName;
+                        user.HopitalDeRef = appUser.HopitRef;
                        
                         IdentityResult result = await UserMgr.CreateAsync(user,appUser.Password);
 
@@ -90,7 +88,7 @@ namespace Doc_Planner.Controllers
                 ViewBag.Message = ex.Message;
             }
 
-            return View(/*appUser*/);
+            return View();
         }
 
 

@@ -21,7 +21,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-               <img src="~/doc_planner.png">
+                <img src="~/doc_planner.png">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Doc_Planner</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -37,22 +37,25 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Appointments" asp-action="Index">Rendez-vous</a>
                         </li>
 
-                        <li>
-                            @if (User.Identity.IsAuthenticated)
-                            {
-                                <a asp-controller="Account" asp-action="Logout">@User.Identity.Name, Se déconnecter  </a>
-                            }
-                            else
-                            {
-                                <a asp-controller="Account" asp-action="Login"> Se connecter </a>
 
-                            }
-                        </li>
 
 
 
                     </ul>
+
+
                 </div>
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a asp-controller="Account" asp-action="Logout">@User.Identity.Name || Se déconnecter </a>
+                }
+                else
+                {
+                    <a asp-controller="Account" asp-action="Login"> Se connecter </a><text>&nbsp;&nbsp;&nbsp;</text>
+                    <a asp-controller="Account" asp-action="Register"> S'inscrire </a>
+
+                }
             </div>
         </nav>
     </header>

@@ -4,20 +4,32 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+    <h1>
+        Modifier le rendez-vous
+        @if (Html.ViewData.Model.Sexe == true)
+        {
+            <text>de Monsieur</text>
+        }
+        else
+        {<text>de Madame</text>}
+        @(Html.ViewData.Model.Nom)
+    </h1>
 
-<h4>Appointment</h4>
+
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="ID" />
-            <div class="form-group">
-                <label asp-for="HDebutRdv" class="control-label"></label>
-                <input asp-for="HDebutRdv" class="form-control" />
-                <span asp-validation-for="HDebutRdv" class="text-danger"></span>
-            </div>
+            <text> Date & heure du rendez-vous </text>
+            <span class="form-check-inline">
+                <input asp-for="HDebutRdv" type="date" class="form-control form-control-sm col-lg-9" required /> <input asp-for="HDebutRdv" type="time" name="heure" class="form-control form-control-sm col-lg-5" required />
+
+
+            </span>
+            <br />
+            <span asp-validation-for="HDebutRdv" class="text-danger"></span>
+            <br />
             <div class="form-group">
                 <label asp-for="Nom" class="control-label"></label>
                 <input asp-for="Nom" class="form-control" />
@@ -31,7 +43,7 @@
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <label asp-for="Sexe" class="control-label"></label>
-                    <br />  
+                    <br />
                     @Html.RadioButtonFor(model => model.Sexe, "true") Masculin
                     @Html.RadioButtonFor(model => model.Sexe, "false") Féminin
                 </label>
@@ -43,8 +55,11 @@
             </div>
             <div class="form-group">
                 <label asp-for="Diabete" class="control-label"></label>
-                <input asp-for="Diabete" class="form-control" />
-                <span asp-validation-for="Diabete" class="text-danger"></span>
+                <select asp-for="Diabete" class="form-control">
+                    <option value="">Sans</option>
+                    <option value="Type2">Type 1</option>
+                    <option value="Type1">Type 2</option>
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="Poids" class="control-label"></label>
@@ -56,11 +71,15 @@
                 <input asp-for="Taille" class="form-control" />
                 <span asp-validation-for="Taille" class="text-danger"></span>
             </div>
-           
+
             <div class="form-group">
                 <label asp-for="ExamenType" class="control-label"></label>
-                <input asp-for="ExamenType" class="form-control" />
-                <span asp-validation-for="ExamenType" class="text-danger"></span>
+                <select asp-for="ExamenType" class="form-control" placeholder="Type de l'examen">
+                    <option value="">Selectionner un type d'examen . . . </option>
+                    <option value="IRM">IRM</option>
+                    <option value="Echographie">Echographie</option>
+                    <option value="Arthroscanner">Arthroscanner</option>
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="NISS" class="control-label"></label>
@@ -72,7 +91,14 @@
                 <input asp-for="Telephone" class="form-control" />
                 <span asp-validation-for="Telephone" class="text-danger"></span>
             </div>
-           
+            <div>
+                <label asp-for="HopitalDeRef" class="control-label"></label>
+                <select asp-for="HopitalDeRef" class="form-control">
+                    <option value="GHDC">Grand Hôpital de Charleroi</option>
+                    <option value="CNDG">Clinique Notre-Dame de Grâce </option>
+                    <option value="CHUCHARLEROI">CHU Charleroi</option>
+                </select>
+            </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>

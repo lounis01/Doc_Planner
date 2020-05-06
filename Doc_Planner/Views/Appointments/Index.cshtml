@@ -19,27 +19,53 @@
         <b>Recherche de rendez-vous</b>
         <br />
         <br />
-        <div class="form-group col-lg-3">
-            <text> Plage du rendez-vous </text>
-            <span class="form-check form-check-inline">
-                <input type="date" name="dateDebut" class="form-control form-control-sm" /> <input type="time" name="hDebut" class="form-control form-control-sm col-lg-2" />   <text> à </text>
-                <input type="date" name="dateFin" class="form-control form-control-sm" /> <input type="time" name="hDebut" class="form-control form-control-sm col-lg-2" />
+        <div class="form-group col-lg-12">
+            <text> Date & heure du rendez-vous </text>
+            <span class="form-check-inline">
+                <input type="date" name="dateDebut" class="form-control form-control-sm col-lg-9" /> <input type="time" name="HDebut" class="form-control form-control-sm col-lg-5" />
+
+            </span>
+            <br />
+            <span class="form-inline">
+                Nom &nbsp;<input type="text" placeholder="Nom du patient" name="nom" class="form-control form-control-sm col-lg-2" />&nbsp;
+                Site du preneur&nbsp;
+                <select name="hopitalref" class="form-control form-control-sm col-lg-3">
+                    <option value="">Séléctionner un hôpital</option>
+                    <option value="GHDC">Grand Hôpital de Charleroi</option>
+                    <option value="CNDG">Clinique Notre-Dame de Grâce </option>
+                    <option value="CHUCHARLEROI">CHU Charleroi</option>
+                </select>
+                Type d'examen&nbsp;
+                <select name="examentype" class="form-control form-control-sm col-lg-3" placeholder="Type de l'examen">
+                    <option value="">Selectionner un type d'examen . . . </option>
+                    <option value="IRM">IRM</option>
+                    <option value="Echographie">Echographie</option>
+                    <option value="Arthroscanner">Arthroscanner</option>
+                </select>
             </span>
 
-            <text> Nom</text>  <input type="text" placeholder="Nom du patient" name="nom" class="form-control form-control-sm" />
-            <text>Date de naissance</text> <input type="date" class="form-control form-control-sm" name="birthday" />
-
-            Rendez-vous annulés
-            <div class="checkbox checkbox-slider--b-flat checkbox-slider-md">
+            <text>Rendez-vous annulés</text>
+            <div class="checkbox checkbox-slider--b-flat checkbox-slider-sm">
                 <label>
-                    <input type="checkbox" name="annules"><span></span>
+
+                    <input type="checkbox" name="annules" value="true"><span></span>
+
                 </label>
             </div>
-            <input type="submit" value="Rechercher" class="btn btn-primary btn-block" />
+            <text>Urgent</text>
+            <div class="checkbox checkbox-slider--b-flat checkbox-slider-sm">
+                <label>
+                   
+                    <input type="checkbox" name="urgent" value="true"><span></span>
+
+                </label>
+            </div>
+
+            <input type="submit" value="Rechercher" class="btn btn-primary btn-block col-lg-2" />
 
         </div>
-        
 
+        
 
     }
 </p>
@@ -50,6 +76,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.HDebutRdv)
             </th>
+           
             <th>
                 @Html.DisplayNameFor(model => model.Nom)
             </th>
@@ -83,6 +110,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Telephone)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HopitalDeRef)
+            </th>
 
             <th></th>
         </tr>
@@ -90,73 +120,75 @@
     <tbody>
         @foreach (var item in Model)
         {
-            @if (item.IsDeleted == false)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.HDebutRdv)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Nom)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Prenom)
-                    </td>
-                    <td>
-                        @if (item.Sexe == true)
-                        {
-                            <img src="~/men.png" />
+            
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.HDebutRdv)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prenom)
+            </td>
+            <td>
+                @if (item.Sexe == true)
+                {
+                    <img src="~/men.png" />
 
-                        }
+                }
 
-                        else
-                        {<img src="~/women.png">}
+                else
+                {<img src="~/women.png">}
 
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Birthday)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Diabete)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Poids)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Taille)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.BMI)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ExamenType)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.NISS)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Telephone)
-                    </td>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Birthday)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Diabete)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Poids)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Taille)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BMI)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExamenType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NISS)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telephone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HopitalDeRef)
+            </td>
 
-                    <td>
+            <td>
 
-                        <a asp-action="Edit" asp-route-id="@item.ID">Editer</a>
-                    </td>
+                <a asp-action="Edit" asp-route-id="@item.ID">Editer</a>
+            </td>
 
-                    <td>
+            <td>
 
-                        <a asp-action="Details" asp-route-id="@item.ID">Détails</a>
-                    </td>
+                <a asp-action="Details" asp-route-id="@item.ID">Détails</a>
+            </td>
 
-                    <td>
+            <td>
 
-                        <a asp-action="Delete" asp-route-id="@item.ID">Supprimer</a>
-                    </td>
+                <a asp-action="Delete" asp-route-id="@item.ID">Supprimer</a>
+            </td>
 
 
 
-                </tr>
-            }
+        </tr>
+            
         }
     </tbody>
 </table>
